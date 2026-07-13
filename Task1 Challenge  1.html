@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM Challenge</title>
+</head>
+<body>
+    <h1>ATM Challenge Test Page</h1>
+    <p>Right-click this page, click <strong>Inspect</strong>, and open the <strong>Console</strong> tab to see the output.</p>
+
+    <script>
+        
+        let userPIN = "1234";
+        let currentBalance = 1000;
+        let incorrectAttempts = 0;
+        let isAccountLocked = false;
+
+        function useATM(enteredPIN, operation, amount = 0, newPIN = "") {
+            console.log(`--- Starting ATM Transaction (${operation}) ---`);
+
+            if (isAccountLocked) {
+                console.log("Error: This account is locked.");
+                return;
+            }
+
+            if (enteredPIN !== userPIN) {
+                incorrectAttempts++;
+                console.log(`Error: Incorrect PIN. Attempt ${incorrectAttempts} of 3.`);
+                if (incorrectAttempts >= 3) {
+                    isAccountLocked = true;
+                    console.log("ALERT: Account is now LOCKED.");
+                }
+                return;
+            }
+
+            incorrectAttempts = 0;
+
+            switch (operation.toLowerCase()) {
+                case "check balance":
+                    console.log(`Your current balance is: $${currentBalance}`);
+                    break;
+
+                case "withdraw":
+                    if (amount <= 0) {
+                        console.log("Error: Withdrawal amount must be greater than $0.");
+                    } else if (amount > currentBalance) {
+                        console.log(`Error: Insufficient funds.`);
+                    } else {
+                        currentBalance -= amount;
+                        console.log(`Success: Withdrew $${amount}. New balance: $${currentBalance}`);
+                    }
+                    break;
+
+                case "deposit":
+                    if (amount <= 0) {
+                        console.log("Error: Deposit must be greater than $0.");
+                    } else {
+                        currentBalance += amount;
+                        console.log(`Success: Deposited $${amount}. New balance: $${currentBalance}`);
+                    }
+                    break;
+
+                case "change pin":
+                    if (newPIN.length === 4 && !isNaN(newPIN)) {
+                        userPIN = newPIN;
+                        console.log(`Success: Your PIN has been updated.`);
+                    } else {
+                        console.log("Error: New PIN must be exactly 4 digits.");
+                    }
+                    break;
+
+                default:
+                    console.log("Error: Invalid operation.");
+            }
+        }
+
+        
+        useATM("1234", "check balance");
+        useATM("1234", "deposit", 250);
+        useATM("1234", "withdraw", 100);
+
+    </script>
+</body>
+</html>

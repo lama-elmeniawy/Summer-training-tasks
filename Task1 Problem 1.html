@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LeetCode Problem 1</title>
+</head>
+<body>
+    <h1>LeetCode 1: Valid Parentheses</h1>
+    <p>Right-click, click <strong>Inspect</strong>, and open the <strong>Console</strong> tab to see the output.</p>
+
+    <script>
+        function isValid(s) {
+            let stack = [];
+            
+            for (let i = 0; i < s.length; i++) {
+                let char = s[i];
+                
+                if (char === '(' || char === '{' || char === '[') {
+                    stack.push(char);
+                } else {
+                    if (stack.length === 0) {
+                        return false;
+                    }
+                    
+                    let last = stack.pop();
+                    
+                    if (char === ')' && last !== '(') return false;
+                    if (char === '}' && last !== '{') return false;
+                    if (char === ']' && last !== '[') return false;
+                }
+            }
+            
+            return stack.length === 0;
+        }
+
+        console.log("Is '()' valid? " + isValid("()"));
+        console.log("Is '()[]{}' valid? " + isValid("()[]{}"));
+        console.log("Is '(]' valid? " + isValid("(]"));
+        console.log("Is '([)]' valid? " + isValid("([)]"));
+        console.log("Is '{[]}' valid? " + isValid("{[]}"));
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Portal Challenge</title>
+</head>
+<body>
+    <h1>Student Portal Challenge Test Page</h1>
+    <p>Right-click, click <strong>Inspect</strong>, and open the <strong>Console</strong> tab to see the output.</p>
+
+    <script>
+        function checkStudentStatus(studentName, attendance, midterm, finalExam, assignment, tuitionPaid) {
+            console.log("-----------------------------------------");
+            console.log("Student: " + studentName);
+
+            if (!tuitionPaid) {
+                console.log("Status: Results Blocked (Outstanding Tuition Fees)");
+                console.log("-----------------------------------------");
+                return;
+            }
+
+            if (attendance < 75) {
+                console.log("Status: Failed (Attendance " + attendance + "% is below required 75%)");
+                console.log("-----------------------------------------");
+                return;
+            }
+
+            let totalScore = midterm + finalExam + assignment;
+            let grade = "";
+
+            if (totalScore >= 90) {
+                grade = "A";
+            } else if (totalScore >= 80) {
+                grade = "B";
+            } else if (totalScore >= 70) {
+                grade = "C";
+            } else if (totalScore >= 60) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+
+            let passStatus = (grade !== "F") ? "PASSED" : "FAILED";
+            
+            console.log("Total Score: " + totalScore + "/100");
+            console.log("Grade: " + grade);
+            console.log("Academic Status: " + passStatus);
+
+            if (totalScore >= 95) {
+                console.log("Scholarship Eligibility: Outstanding Performance! Eligible for Scholarship.");
+            }
+
+            console.log("-----------------------------------------");
+        }
+
+        checkStudentStatus("Lama", 90, 18, 50, 28, true);
+        checkStudentStatus("Ahmed", 60, 20, 45, 20, true);
+        checkStudentStatus("Sara", 95, 20, 50, 27, false);
+        checkStudentStatus("Omar", 85, 10, 25, 10, true);
+    </script>
+</body>
+</html>

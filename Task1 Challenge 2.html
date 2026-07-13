@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout Challenge</title>
+</head>
+<body>
+    <h1>Checkout Challenge Test Page</h1>
+    <p>Right-click, click <strong>Inspect</strong>, and open the <strong>Console</strong> tab to see the output.</p>
+
+    <script>
+        function runCheckout(customerName, category, price, quantity, couponCode, paymentMethod) {
+            let subtotal = price * quantity;
+            
+            let categoryDiscount = 0;
+            if (category === "Electronics") {
+                categoryDiscount = 0.15;
+            } else if (category === "Clothing") {
+                categoryDiscount = 0.10;
+            }
+
+            let couponDiscount = 0;
+            if (couponCode === "SAVE10") {
+                couponDiscount = 0.10;
+            }
+
+            let paymentDiscount = 0;
+            if (paymentMethod === "Cash") {
+                paymentDiscount = 0.05;
+            }
+
+            let totalDiscounts = (subtotal * categoryDiscount) + (subtotal * couponDiscount) + (subtotal * paymentDiscount);
+            let discountedSubtotal = subtotal - totalDiscounts;
+
+            if (discountedSubtotal < 0) {
+                discountedSubtotal = 0;
+            }
+
+            let vat = discountedSubtotal * 0.14;
+            let finalPrice = discountedSubtotal + vat;
+
+            console.log("==============================");
+            console.log("INVOICE");
+            console.log("==============================");
+            console.log("Customer Name: " + customerName);
+            console.log("Category: " + category);
+            console.log("Quantity: " + quantity);
+            console.log("Subtotal: $" + subtotal.toFixed(2));
+            console.log("Discount Applied: $" + totalDiscounts.toFixed(2));
+            console.log("VAT (14%): $" + vat.toFixed(2));
+            console.log("Final Total: $" + finalPrice.toFixed(2));
+            console.log("==============================\n");
+        }
+
+        runCheckout("Lama", "Electronics", 500, 2, "SAVE10", "Cash");
+        runCheckout("Ahmed", "Clothing", 150, 3, "NONE", "Credit Card");
+    </script>
+</body>
+</html>
