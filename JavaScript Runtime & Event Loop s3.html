@@ -1,0 +1,38 @@
+// Task 1
+console.log("A");
+
+setTimeout(function() {
+    console.log("B");
+}, 1000);
+
+console.log("C");
+
+// Task 2
+console.log("First");
+
+setTimeout(function() {
+    console.log("Third");
+}, 0);
+
+console.log("Second");
+
+// Task 3
+console.log("Step 1: Code starts running");
+
+setTimeout(function() {
+    console.log("Step 4: Async task runs later");
+}, 500);
+
+console.log("Step 2: Moving to next line immediately");
+console.log("Step 3: Main flow finished");
+
+// Task 4
+setTimeout(function() {
+    console.log("Async callback executed");
+}, 0);
+
+for (let i = 0; i < 3; i++) {
+    console.log("Stack busy working on loop: " + i);
+}
+
+console.log("Stack is now empty");

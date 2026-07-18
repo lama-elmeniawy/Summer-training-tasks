@@ -1,0 +1,36 @@
+// Task 1
+console.log("Start");
+console.log("Middle");
+console.log("End");
+
+// Task 2
+function secondFunction() {
+    console.log("Inside the second function");
+}
+
+function firstFunction() {
+    console.log("Starting the first function");
+    secondFunction();
+    console.log("Finishing the first function");
+}
+
+firstFunction();
+
+// Task 3
+let sum = 5 + 10;
+console.log(sum);
+
+let product = sum * 2;
+console.log(product);
+
+// Task 4
+function calculateSquare(number) {
+    return number * number;
+}
+
+function displayResult(value) {
+    let result = calculateSquare(value);
+    console.log("The result is: " + result);
+}
+
+displayResult(4);

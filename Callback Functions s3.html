@@ -1,0 +1,58 @@
+// Task 1
+function greetUser(name, callback) {
+    console.log("Hello, " + name + "!");
+    callback();
+}
+
+function sayGoodbye() {
+    console.log("Goodbye!");
+}
+
+greetUser("Alex", sayGoodbye);
+
+// Task 2
+function calculator(num1, num2, operation) {
+    return operation(num1, num2);
+}
+
+function add(a, b) {
+    return a + b;
+}
+
+function multiply(a, b) {
+    return a * b;
+}
+
+console.log(calculator(5, 3, add));
+console.log(calculator(5, 3, multiply));
+
+// Task 3
+function loadData(onFinish) {
+    console.log("Fetching data from server...");
+    setTimeout(function() {
+        let fakeData = { id: 101, name: "Dashboard Data" };
+        onFinish(fakeData);
+    }, 2000);
+}
+
+function processData(data) {
+    console.log("Data loaded successfully: " + data.name);
+}
+
+loadData(processData);
+
+// Task 4
+function login(username, password, onSuccess) {
+    console.log("Checking credentials for " + username + "...");
+    if (password === "1234") {
+        onSuccess();
+    } else {
+        console.log("Access denied.");
+    }
+}
+
+function showDashboard() {
+    console.log("Welcome to your dashboard!");
+}
+
+login("user1", "1234", showDashboard);

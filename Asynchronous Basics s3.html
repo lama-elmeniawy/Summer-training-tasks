@@ -1,0 +1,29 @@
+// Task 1
+console.log("Hello");
+
+setTimeout(function() {
+    console.log("World");
+}, 2000);
+
+// Task 2
+for (let i = 1; i <= 5; i++) {
+    setTimeout(function() {
+        console.log(i);
+    }, i * 1000);
+}
+
+// Task 3
+console.log("Loading...");
+
+setTimeout(function() {
+    console.log("Done");
+}, 3000);
+
+// Task 4
+function sendDelayedMessage(message, delayTime) {
+    setTimeout(function() {
+        console.log("New Message: " + message);
+    }, delayTime);
+}
+
+sendDelayedMessage("Welcome back!", 1500);
